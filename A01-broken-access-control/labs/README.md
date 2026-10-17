@@ -55,4 +55,8 @@ This lab stores user chat logs directly on the server's file system, and retriev
 Solve the lab by finding the password for the user carlos, and logging into their account.
 SOLUTION:
 go to live chat section and now go to inspect and network tab now send a msg hello and click view tanscript a .txt file gets downloaded in the network tab we can see the url of that file change it to 1.xt and browser it then we get the password of the user in the text file which can be used to login into carlos's account and solve the labs.
-
+Lab 8: Method-based access control can be circumvented
+PRACTITIONER
+This lab implements access controls based partly on the HTTP method of requests. You can familiarize yourself with the admin panel by logging in using the credentials administrator:admin.
+To solve the lab, log in using the credentials wiener:peter and exploit the flawed access controls to promote yourself to become an administrator.
+SOLUTION:
