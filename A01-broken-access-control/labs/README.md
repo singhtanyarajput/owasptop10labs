@@ -59,4 +59,9 @@ Lab 8: Method-based access control can be circumvented
 PRACTITIONER
 This lab implements access controls based partly on the HTTP method of requests. You can familiarize yourself with the admin panel by logging in using the credentials administrator:admin.
 To solve the lab, log in using the credentials wiener:peter and exploit the flawed access controls to promote yourself to become an administrator.
+understanding lab:this lab deals with priviledge escalation means a normal user can do admin functions we deal with the http request parameters to check if change in the parameters allows a particular action that is not supposed to be done by that user the http request is checked inconsistently or not 
 SOLUTION:
+to solve later some problem is coming*****
+some pics i have added i tried solving the lab but some error is coming
+Lab 9: Multi-step process with no access control on one step
+PRACTITIONER
