@@ -65,3 +65,29 @@ to solve later some problem is coming*****
 some pics i have added i tried solving the lab but some error is coming
 Lab 9: Multi-step process with no access control on one step
 PRACTITIONER
+This lab has an admin panel with a flawed multi-step process for changing a user's role. You can familiarize yourself with the admin panel by logging in using the credentials administrator:admin.
+To solve the lab, log in using the credentials wiener:peter and exploit the flawed access controls to promote yourself to become an administrator.
+SOLUTION:
+login as admin and try promoting carlos capture the confirmation request final step into repeater and then open an incognito mode browser login as non-admin user and then find the cookie in inspect-> application-> session copy the cookie and replace the admin cookie in the repeater with non-admin user's cookie then change the name of user in request parameter from carlos to wiener and send the request.
+Lab 10: Referer-based access control
+PRACTITIONER
+This lab controls access to certain admin functionality based on the Referer header. You can familiarize yourself with the admin panel by logging in using the credentials administrator:admin.
+To solve the lab, log in using the credentials wiener:peter and exploit the flawed access controls to promote yourself to become an administrator.
+SOLUTION:
+same things only as above 
+*******Vulnerability: Referer-based access control bypass.
+
+Root cause: The application relies on a client-controlled HTTP header instead of enforcing proper authorization.
+
+Impact: A normal user may gain administrator privileges.
+
+Testing technique: Capture a legitimate role-change request, replay it using a normal user's session, and test whether the Referer header influences authorization.
+
+Remediation: Enforce authorization server-side for every sensitive operation. Never treat Referer or other client-controlled headers as proof of privilege.
+***How this differs from your previous labs***
+Lab	Main weakness
+Method-based access control	Authorization differs depending on the HTTP method.
+Multi-step process	One step lacks an authorization check.
+Referer-based access control	Authorization relies on a client-controlled Referer header.
+
+
