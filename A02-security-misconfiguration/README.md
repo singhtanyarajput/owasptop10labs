@@ -1,6 +1,9 @@
 # A02:2025 – Security Misconfiguration
 
 ## 1. What the Vulnerability Is
+OWASP A02: Security Misconfiguration happens when an application's security settings are defined, implemented, or maintained incorrectly.
+
+Think of it like buying a heavy-duty safe for your valuables, but leaving the factory default combination as 0-0-0-0, or forgetting to lock it entirely because the locking mechanism was too complicated to figure out. The security features exist, but because they are configured poorly or left on default settings, they provide no actual protection.
 Security Misconfiguration occurs when security controls, cloud infrastructure, web servers, databases, or application frameworks are inaccurately configured, left at default settings, or maintained with unnecessary exposed features. In the OWASP Top 10:2025, it holds the **#2 position**.
 
 ## 2. How It Works
