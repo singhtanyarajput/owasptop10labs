@@ -149,3 +149,39 @@ The attacker places the real account page inside an invisible iframe and positio
 The website accepts an email address from the URL and automatically fills it into the email input field.
 Together, these features allow an attacker to trick a logged-in victim into changing their email address.
 the process is similar to the previous lab
+Lab 3: Clickjacking with a frame buster script
+This lab is protected by a frame buster which prevents the website from being framed. Can you get around the frame buster and conduct a clickjacking attack that changes the users email address?
+To solve the lab, craft some HTML that frames the account page and fools the user into changing their email address by clicking on "Click me". The lab is solved when the email address is changed.
+You can log in to your own account using the following credentials: wiener:peter
+APPENTICE
+SOLUTION:
+A frame buster is JavaScript code used by a website to detect whether its page is being loaded inside an iframe.
+For example, a website might use:
+if (window.top !== window.self) {
+    window.top.location = window.self.location;
+}
+Let's understand this:
+- window.self refers to the current webpage.
+- window.top refers to the top-level browser window.
+- If both are different, the webpage is inside an iframe.
+- The script attempts to escape the iframe by redirecting the top-level window to the website.
+Why do websites use frame busters?
+
+To prevent attackers from embedding sensitive pages inside their own websites and conducting clickjacking attacks.
+However, frame busters implemented using JavaScript can sometimes be bypassed.
+2. What is the new technique in this lab?
+The important new attribute is:
+sandbox="allow-forms"
+This is an HTML iframe security attribute.
+Normally, an iframe can be given permissions through the sandbox attribute. Without additional permissions, the browser restricts several actions inside that iframe.
+
+For example, a sandboxed iframe without allow-scripts cannot execute JavaScript.
+
+That is exactly what we need here.
+The frame buster is JavaScript. If we prevent JavaScript execution inside the iframe, the frame buster cannot run.
+But there is another problem: we still need the victim to submit the Update email form.
+That's why we use:
+sandbox="allow-forms"
+This allows form submissions while continuing to block scripts.
+SOLVE THE LAB IN THE SAME WAY.
+
