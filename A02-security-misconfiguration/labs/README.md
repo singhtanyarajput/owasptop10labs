@@ -124,4 +124,28 @@ An iframe allows one webpage to display another webpage inside it.
  z-index
 The z-index property determines which element appears above another element.
 in the lab log into your account and then go to the exploit server and paste a html script in that script edit the values of width and height and to and side to fit the click me button just above the delete account button and then deliver the exploit and solve the lab.
+Lab 2: Clickjacking with form input data prefilled from a URL parameter
+APPENTICE
+This lab extends the basic clickjacking example in Lab: Basic clickjacking with CSRF token protection. The goal of the lab is to change the email address of the user by prepopulating a form using a URL parameter and enticing the user to inadvertently click on an "Update email" button.
+To solve the lab, craft some HTML that frames the account page and fools the user into updating their email address by clicking on a "Click me" decoy. The lab is solved when the email address is changed.
+You can log in to your own account using the following credentials: wiener:peter
+SOLUTION:
+In this lab, the attack is almost identical, but there is one new feature:
+We can prefill the email address field using a URL parameter.
+Normally, the user enters a new email address and clicks Update email.
 
+But suppose the website accepts an email address through its URL:
+https://example.com/my-account?email=hacker@example.com
+When the page loads, the email field is automatically populated with:
+hacker@example.com
+The attacker can take advantage of this feature.
+
+The victim doesn't need to type anything. The attacker has already supplied the email address in the iframe URL.
+2. What is the actual vulnerability?
+There are two important things happening here.
+1. Clickjacking
+The attacker places the real account page inside an invisible iframe and positions a fake message over its Update email button.
+2. URL parameter prepopulation
+The website accepts an email address from the URL and automatically fills it into the email input field.
+Together, these features allow an attacker to trick a logged-in victim into changing their email address.
+the process is similar to the previous lab
