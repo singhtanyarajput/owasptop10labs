@@ -32,4 +32,66 @@ This website has an insecure CORS configuration in that it trusts the "null" ori
 To solve the lab, craft some JavaScript that uses CORS to retrieve the administrator's API key and upload the code to your exploit server. The lab is solved when you successfully submit the administrator's API key.
 You can log in to your own account using the following credentials: wiener:peter
 SOLUTION:
+login as weiner and then in http history go to accountdetails and send the request to repeater there add Origin:null and you will see  that the "null" origin is reflected in the Access-Control-Allow-Origin header.now go to exploit server and add the javascript then view exploit and access logs there we can get the administrators api key 
+Lab 3: CORS vulnerability with trusted insecure protocols
+PRACTITIONER
+This website has an insecure CORS configuration in that it trusts all subdomains regardless of the protocol.
+To solve the lab, craft some JavaScript that uses CORS to retrieve the administrator's API key and upload the code to your exploit server. The lab is solved when you successfully submit the administrator's API key.
+You can log in to your own account using the following credentials: wiener:peter
+Step 1: Log in and inspect account details
+1. Open the lab.
+2. Turn Burp Proxy interception off.
+3. Open Burp's browser.
+4. Log in using:
+Username: wiener
+Password: peter
+
+
+5. Open your account page.
+6. In Burp HTTP history, find the request:
+GET /accountDetails HTTP/2
+
+
+This request retrieves the account information.
+
+Send it to Repeater.
+Step 2: Test the CORS configuration
+In Repeater, add this header:
+Origin: http://subdomain.YOUR-LAB-ID.web-security-academy.net
+
+
+Replace YOUR-LAB-ID with your actual lab ID.
+
+Send the request.
+
+Look for these response headers:
+Access-Control-Allow-Origin: http://subdomain.YOUR-LAB-ID.web-security-academy.net
+Access-Control-Allow-Credentials: true
+
+
+What does this tell us?
+
+The server is reflecting the subdomain origin and allowing credentialed requests.
+
+This is the first confirmation that the CORS configuration is vulnerable.
+Step 3: Find the XSS vulnerability
+Now we need a way to execute JavaScript on the insecure subdomain.
+1. Return to the website.
+2. Open any product page.
+3. Click Check stock.
+4. Observe the request and the URL used to load stock information.
+You should find a request to a URL similar to:
+http://stock.YOUR-LAB-ID.web-security-academy.net/
+
+
+Notice that it uses HTTP, not HTTPS.
+
+Now inspect the URL parameter:
+productId=4
+
+
+The lab's hint is telling you that this parameter is vulnerable to XSS.
+
+In other words, the website does not properly handle input supplied through productId, allowing injected JavaScript to execute.
+
 
